@@ -1,8 +1,10 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:layout>
+	<jsp:attribute name="pageTitle">Exemple Layout</jsp:attribute>
+
     <jsp:attribute name="title">
     	TITRE
     </jsp:attribute>
