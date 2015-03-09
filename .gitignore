@@ -1,0 +1,6 @@
+/build/
+/.hibernateSynchronizer3/
+/.settings/
+.classpath
+.project
+.tern-project
