@@ -22,83 +22,90 @@ public class DialogueBd {
 		super();
 	}
 
-	public  static void insertionBD (String mysql)   throws MonException 
+	public static void insertionBD (String mysql)   throws MonException 
 	{   
 		Connection cnx=null;
 		try 
-	      { 
-			
+	    { 
 			cnx = Connexion.getInstance().getConnexion();
-		   Statement unstatement = cnx.createStatement();
+			
+			Statement unstatement = cnx.createStatement();
 	        unstatement.execute(mysql);
-	        System.out.println("Je suis passé");
+	        
+	        System.out.println("Insertion execute!");
+	        
 	        // on ferme la connexion
 	        cnx.close();
-	      }
-	       catch(SQLException e)
-	       
-	      {   System.out.println("Erreur :" +  e.getMessage () );
-	      System.out.println(mysql);
-	    	   new MonException(e.getMessage());
-	       }       
+	     }
+	     catch(SQLException e)
+	     {   
+	    	 System.out.println("ErreurSQL :" +  e.getMessage () );
+	    	 System.out.println(mysql);
+	    	 new MonException(e.getMessage());
+	     }       
 	} 
 
-	
- public static List<Object> lecture(String req )  throws  MonException
-	  {    
-		 Connection cnx = null;
-		  Statement stmt;
-	      ResultSet  rs;
-	      List<Object> mesRes = new ArrayList<Object>();
-	      int i;
-	      int nbCols;
+	public static List<Object> lecture(String req)  throws  MonException
+	{    
+		Connection cnx = null;
+		Statement stmt;
+	    ResultSet  rs;
+	    List<Object> mesRes = new ArrayList<Object>();
+	    int i;
+	    int nbCols;
 	       
-	            try
+	    try
+	    {
+	    	cnx = Connexion.getInstance().getConnexion();
+	        stmt = cnx.createStatement(); 
+	                 
+	        // Execution de la requete 
+	        rs= stmt.executeQuery(req);
+	                
+	        // on retrouve le nombre de colonnes de la requête 
+	        ResultSetMetaData rsmd = rs.getMetaData();
+	        nbCols = rsmd.getColumnCount();
+	        i=1;
+	               
+	        // on balaie toutes les lignes
+	        while (rs.next())
+	        {  
+	        	// On balaie les colonnes
+	            i=1;
+	            while (i <= nbCols)
 	            {
-	            	
-	            	cnx = Connexion.getInstance().getConnexion();
-	            	 stmt = cnx.createStatement(); 
-	                 // Execution de la requete 
-	                rs= stmt.executeQuery(req);
-	                // on retrouve le nombre de colonnes de la requête 
-	                ResultSetMetaData rsmd = rs.getMetaData();
-	                nbCols = rsmd.getColumnCount();
-	                i=1;
-	                // on balaie toutes les lignes
-	               while ( rs.next())
-	               {  
-	            	   
-	                   // On balaie les colonnes
-	                   i=1;
-	                    while (i <= nbCols)
-	                     {
-	                         mesRes.add(rs.getObject(i));
-	                         i++;
-	                     }
-	               }
-	                cnx.close();
-	                // Retourner la table
-	                return (mesRes);
+	            	mesRes.add(rs.getObject(i));
+	                i++;
 	            }
-	           catch (SQLException e)
-	            {
+	         }
+	                
+	        cnx.close();
+	                
+	        // Retourner la table
+	        return (mesRes);
+	     }
+	     catch (SQLException e)
+	     {
 	        	   System.out.println(e.getMessage());
 	        	   throw new MonException(e.getMessage());
-	            }
-	            finally
-	            {
-	                // S'il y a eu un problème, la connexion
-	                // peut être encore ouverte, dans ce cas
-	                // il faut la fermer.                 
-	               
-	                if (cnx != null)
-	                  try { 
-	                     cnx.close();
-	                    }
-	                   catch (SQLException e)
-	                     {
-	                        }
-	             }
-	  }
+	     }
+	     finally
+	     {
+	        // S'il y a eu un problème, la connexion
+	        // peut être encore ouverte, dans ce cas
+	        // il faut la fermer.                 
+	       
+	        if (cnx != null)
+	        {
+	        	try { 
+	        		cnx.close();
+	        	}
+	        	catch (SQLException e)
+	        	{}
+	        }
+         }
+	}
+
+	
 }
 
