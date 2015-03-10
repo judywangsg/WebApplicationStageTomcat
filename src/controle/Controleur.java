@@ -87,10 +87,9 @@ public class Controleur extends HttpServlet
 			}
 			else if (AFFICHER_STAGE.equals(actionName))
 			{
-				Stage unStage = new Stage();
 				request.setAttribute("affichageListe", 1);
 				
-				List<Stage> listeStages = unStage.rechercheLesStages();
+				List<Stage> listeStages = Stage.rechercheLesStages();
 				request.setAttribute("liste", listeStages);
 				
 				destinationPage = "/afficherStages.jsp";
