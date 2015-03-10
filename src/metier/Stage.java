@@ -143,4 +143,36 @@ public class Stage {
 		}
 
 	}
+	
+	public static Object rechercheUnStage( ) throws MonException, ParseException
+	{
+		Object s;
+		Stage unStage = new Stage();
+		try
+		{
+			String mysql = "";
+			
+			mysql = "SELECT * FROM stages ORDER BY id ASC where libelle like '%%'";
+			
+			s= DialogueBd.lecture(mysql); 
+		
+			Stage uS = new Stage();
+			uS.setId(s.toString());
+			uS.setLibelle(s.toString());
+	        DateFormat dateFormatpers = new SimpleDateFormat("yyyy-MM-dd");
+	        uS.setDatedebut(dateFormatpers.parse(s.toString()));
+	        uS.setDatefin((dateFormatpers.parse(s.toString())));
+	        uS.setNbplaces( Integer.parseInt(s.toString()));
+	        uS.setNbinscrits( Integer.parseInt(s.toString()));
+	        unStage.equals(s);
+            
+            return unStage;
+			
+		} catch (MonException e)
+		{
+			System.out.println(e.getMessage());
+			throw e;
+		}
+
+	}
 }

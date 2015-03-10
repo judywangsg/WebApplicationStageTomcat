@@ -89,10 +89,34 @@ public class Controleur extends HttpServlet
 					
 				}
 				
-			}      // Redirection vers la page jsp appropriee 
+			}     else if (CHERCHER_STAGE.equals(actionName))
+			{
+				try
+				{
+					// meme chose que pour AJOUT_STAGE
+					Stage unStage = new Stage();
+					unStage.setId(request.getParameter("id"));
+					unStage.setLibelle(request.getParameter("libelle"));
+					unStage.setDatedebut(conversionChaineenDate(request.getParameter("datedebut"), "yyyy/MM/dd"));
+					unStage.setDatefin(conversionChaineenDate(request.getParameter("datefin"), "yyyy/MM/dd"));
+					unStage.setNbplaces(Integer.parseInt(request.getParameter("nbplaces")));
+					unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
+					unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
+					Stage.rechercheUnStage();
+					destinationPage = "/chercherStage.jsp";
+				} catch (Exception e)
+				{
+					request.setAttribute("MesErreurs", e.getMessage());
+					System.out.println(e.getMessage());
+				}
+				
+				
+			} 
+			
+			// Redirection vers la page jsp appropriee 
 	      RequestDispatcher dispatcher =getServletContext().getRequestDispatcher(destinationPage);
 	           dispatcher.forward(request, response); 
-	  } 
+			} 
 
 	//L’appel de cette procédure se fait avec :
 
