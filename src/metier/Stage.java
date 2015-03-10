@@ -97,7 +97,7 @@ public class Stage {
 		DialogueBd.insertionBD(mysql);
 	} 
 	
-	public List<Stage> rechercheLesStages() throws MonException, ParseException
+	public static List<Stage> rechercheLesStages() throws MonException, ParseException
 	{
 		List<Object> rs;
 		List<Stage> mesStages = new ArrayList<Stage>();
