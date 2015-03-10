@@ -22,10 +22,9 @@ public class Controleur extends HttpServlet
 	private static final String ACTION_TYPE = "action";
 	private static final String SAISIE_STAGE = "saisieStage";
 	private static final String AFFICHER_STAGE = "afficheStage";
-	private static final String RECHERCHER_STAGE = " ";
-	private static final String CHERCHER_STAGE = "chercheStage";
 	private static final String AJOUT_STAGE = "ajoutStage";
 	private static final String MODIFIER_STAGE = "modifierStage";
+	private static final String RECHERCHER_STAGE = "rechercheStage";
 	private static final String ERROR_PAGE = null;
 
 	// le format est une combinaison de MM dd yyyy avec / ou –
@@ -77,20 +76,15 @@ public class Controleur extends HttpServlet
 				
 				destinationPage = "/afficherStages.jsp";
 			} 
-			else if (CHERCHER_STAGE.equals(actionName))
+			else if (RECHERCHER_STAGE.equals(actionName))
 			{
-				// meme chose que pour AJOUT_STAGE
-				Stage unStage = new Stage();
-				unStage.setId(request.getParameter("id"));
-				unStage.setLibelle(request.getParameter("libelle"));
-				unStage.setDatedebut(conversionChaineenDate(request.getParameter("datedebut"), "yyyy/MM/dd"));
-				unStage.setDatefin(conversionChaineenDate(request.getParameter("datefin"), "yyyy/MM/dd"));
-				unStage.setNbplaces(Integer.parseInt(request.getParameter("nbplaces")));
-				unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
-				unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
-				Stage.rechercheUnStage(request.getParameter("cp"));
-				
-				destinationPage = "/chercherStage.jsp";
+				if (request.getParameter("submitted") != null)
+				{ //formulaire envoyé
+					List<Stage> listeStages = Stage.rechercheUnStage(request.getParameter("keyword"));
+					request.setAttribute("liste", listeStages);
+				}
+			
+				destinationPage = "/rechercherStage.jsp";
 			} 	
 		} catch (Exception e) 
 		{ //Erreurs
