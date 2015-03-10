@@ -22,7 +22,7 @@ public class Controleur extends HttpServlet
 	private static final String ACTION_TYPE = "action";
 	private static final String SAISIE_STAGE = "saisieStage";
 	private static final String AFFICHER_STAGE = "afficheStage";
-	private static final String RECHERCHER_STAGE = "rechercheStage";
+	private static final String RECHERCHER_STAGE = " ";
 	private static final String CHERCHER_STAGE = "chercheStage";
 	private static final String AJOUT_STAGE = "ajoutStage";
 	private static final String MODIFIER_STAGE = "modifierStage";
@@ -102,7 +102,7 @@ public class Controleur extends HttpServlet
 					unStage.setNbplaces(Integer.parseInt(request.getParameter("nbplaces")));
 					unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
 					unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
-					Stage.rechercheUnStage();
+					Stage.rechercheUnStage(request.getParameter("cp"));
 					destinationPage = "/chercherStage.jsp";
 				} catch (Exception e)
 				{

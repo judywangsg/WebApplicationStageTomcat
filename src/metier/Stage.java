@@ -144,15 +144,15 @@ public class Stage {
 
 	}
 	
-	public static Object rechercheUnStage( ) throws MonException, ParseException
+	public static List<Stage> rechercheUnStage(String cp) throws MonException, ParseException
 	{
-		Object s;
-		Stage unStage = new Stage();
+		List<Object> s;
+		List<Stage> unStage = new ArrayList<Stage>();
 		try
 		{
 			String mysql = "";
 			
-			mysql = "SELECT * FROM stages ORDER BY id ASC where libelle like '%%'";
+			mysql = "SELECT * FROM stages ORDER BY id ASC where libelle like '%cp%'";
 			
 			s= DialogueBd.lecture(mysql); 
 		
