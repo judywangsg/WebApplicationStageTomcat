@@ -1,5 +1,6 @@
 package controle;
 
+import java.beans.DesignMode;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.util.Date;
 
 import meserreurs.MonException;
@@ -65,7 +67,24 @@ public class Controleur extends HttpServlet
 				unStage.insertionStage();
 				
 				destinationPage = "/index.jsp";
-			} 
+			} else if (MODIFIER_STAGE.equals(actionName))
+			{
+				/*
+				int id = Integer.valueOf(request.getParameter("id")); //ID stage
+				
+				Stage monStage = Stage.find(id);
+				
+				if (request.getParameter("submitted") != null)
+				{ //formulaire envoyé
+					monStage.setLibelle(request.getParameter("libelle"));
+					//faire pareil pour le reste des attributs
+					
+					monStage.update(); //mis à jour SQL du stage
+				}
+				
+				destinationPage = "/modifierStage.jsp";
+				*/
+			}
 			else if (AFFICHER_STAGE.equals(actionName))
 			{
 				Stage unStage = new Stage();
