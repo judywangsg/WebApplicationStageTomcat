@@ -29,120 +29,108 @@ public class Controleur extends HttpServlet
 	private static final String ERROR_PAGE = null;
 
 	// le format est une combinaison de MM dd yyyy avec / ou –
-		// exemple dd/MM/yyyy
-		public Date conversionChaineenDate(String unedate, String unformat) throws Exception
-		{
-			Date datesortie;
-			// on définit un format de sortie
-			SimpleDateFormat defFormat = new SimpleDateFormat(unformat);
-			datesortie = defFormat.parse(unedate);
-			return datesortie;
-		}
+	// exemple dd/MM/yyyy
+	public Date conversionChaineenDate(String unedate, String unformat) throws Exception
+	{
+		Date datesortie;
+		// on définit un format de sortie
+		SimpleDateFormat defFormat = new SimpleDateFormat(unformat);
+		datesortie = defFormat.parse(unedate);
+		return datesortie;
+	}
 
 
 	protected void processusTraiteRequete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, MonException, Exception
+	{
+		String actionName = request.getParameter(ACTION_TYPE);
+		String destinationPage = ERROR_PAGE;
+			
+		try 
 		{
-			String actionName = request.getParameter(ACTION_TYPE);
-			String destinationPage = ERROR_PAGE;
-			List<Stage> listeStages = null;
-			// execute l'action
-
+			//Executer les actions
 			if (SAISIE_STAGE.equals(actionName))
 			{
 				request.setAttribute("stage", new Stage());
+				
 				destinationPage = "/saisieStage.jsp";
-			}
-
-			else if (AJOUT_STAGE.equals(actionName))
+			} else if (AJOUT_STAGE.equals(actionName))
 			{
-				try
-				{
-					Stage unStage = new Stage();
-					unStage.setId(request.getParameter("id"));
-					unStage.setLibelle(request.getParameter("libelle"));
-					unStage.setDatedebut(conversionChaineenDate(request.getParameter("datedebut"), "yyyy/MM/dd"));
-					unStage.setDatefin(conversionChaineenDate(request.getParameter("datefin"), "yyyy/MM/dd"));
-			unStage.setNbplaces(Integer.parseInt(request.getParameter("nbplaces")));
-		unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
-					unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
-					unStage.insertionStage();
-					destinationPage = "/index.jsp";
-				} catch (Exception e)
-				{
-					request.setAttribute("MesErreurs", e.getMessage());
-					System.out.println(e.getMessage());
-				}
+				Stage unStage = new Stage();
+				unStage.setId(request.getParameter("id"));
+				unStage.setLibelle(request.getParameter("libelle"));
+				unStage.setDatedebut(conversionChaineenDate(request.getParameter("datedebut"), "yyyy/MM/dd"));
+				unStage.setDatefin(conversionChaineenDate(request.getParameter("datefin"), "yyyy/MM/dd"));
+				unStage.setNbplaces(Integer.parseInt(request.getParameter("nbplaces")));
+				unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
+				unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
+				unStage.insertionStage();
 				
-			} else if (AFFICHER_STAGE.equals(actionName))
-			{
-				try
-				{
-					Stage unStage = new Stage();
-					request.setAttribute("affichageListe", 1);
-					listeStages=unStage.rechercheLesStages();
-					request.setAttribute("liste", listeStages);
-					destinationPage = "/afficherStages.jsp";
-				} catch (MonException e)
-				{
-					request.setAttribute("MesErreurs", e.getMessage());
-					destinationPage = "/Erreur.jsp";
-					
-				}
-				
-			}     else if (CHERCHER_STAGE.equals(actionName))
-			{
-				try
-				{
-					// meme chose que pour AJOUT_STAGE
-					Stage unStage = new Stage();
-					unStage.setId(request.getParameter("id"));
-					unStage.setLibelle(request.getParameter("libelle"));
-					unStage.setDatedebut(conversionChaineenDate(request.getParameter("datedebut"), "yyyy/MM/dd"));
-					unStage.setDatefin(conversionChaineenDate(request.getParameter("datefin"), "yyyy/MM/dd"));
-					unStage.setNbplaces(Integer.parseInt(request.getParameter("nbplaces")));
-					unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
-					unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
-					Stage.rechercheUnStage(request.getParameter("cp"));
-					destinationPage = "/chercherStage.jsp";
-				} catch (Exception e)
-				{
-					request.setAttribute("MesErreurs", e.getMessage());
-					System.out.println(e.getMessage());
-				}
-				
-				
+				destinationPage = "/index.jsp";
 			} 
+			else if (AFFICHER_STAGE.equals(actionName))
+			{
+				Stage unStage = new Stage();
+				request.setAttribute("affichageListe", 1);
+				
+				List<Stage> listeStages = unStage.rechercheLesStages();
+				request.setAttribute("liste", listeStages);
+				
+				destinationPage = "/afficherStages.jsp";
+			} 
+			else if (CHERCHER_STAGE.equals(actionName))
+			{
+				// meme chose que pour AJOUT_STAGE
+				Stage unStage = new Stage();
+				unStage.setId(request.getParameter("id"));
+				unStage.setLibelle(request.getParameter("libelle"));
+				unStage.setDatedebut(conversionChaineenDate(request.getParameter("datedebut"), "yyyy/MM/dd"));
+				unStage.setDatefin(conversionChaineenDate(request.getParameter("datefin"), "yyyy/MM/dd"));
+				unStage.setNbplaces(Integer.parseInt(request.getParameter("nbplaces")));
+				unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
+				unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
+				Stage.rechercheUnStage(request.getParameter("cp"));
+				
+				destinationPage = "/chercherStage.jsp";
+			} 	
+		} catch (Exception e) 
+		{ //Erreurs
+			request.setAttribute("MesErreurs", e.getMessage());
+			destinationPage = "/Erreur.jsp";
+			System.out.println(e.getMessage());
+		}
 			
-			// Redirection vers la page jsp appropriee 
-	      RequestDispatcher dispatcher =getServletContext().getRequestDispatcher(destinationPage);
-	           dispatcher.forward(request, response); 
-			} 
+		// Redirection vers la page jsp appropriee 
+	    RequestDispatcher dispatcher =getServletContext().getRequestDispatcher(destinationPage);
+        dispatcher.forward(request, response); 
+	} 
 
 	//L’appel de cette procédure se fait avec :
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			// TODO Auto-generated method stub
-			try
-			  {
-				processusTraiteRequete(request, response);
-					  }
-			catch( Exception e)
-				{
-					e.printStackTrace(); }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		// TODO Auto-generated method stub
+		try
+	    {
+			processusTraiteRequete(request, response);
 		}
-
-		/**
-		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-		 */
-		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			// TODO Auto-generated method stub
-			try
-			  {
-				processusTraiteRequete(request, response);
-			  }
-			catch( Exception e)
-				{
-					e.printStackTrace();;
-				}
+		catch(Exception e)
+		{
+			e.printStackTrace(); 
 		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		// TODO Auto-generated method stub
+		try
+		{
+			processusTraiteRequete(request, response);
+		}
+		catch( Exception e)
+		{
+			e.printStackTrace();;
+		}
+	}
 }
