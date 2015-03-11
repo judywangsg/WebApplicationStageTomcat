@@ -12,7 +12,6 @@
     <jsp:body>
         <form method="post" action="Controleur">
         	<input type="hidden" value="rechercheStage" name="action" />
-        	<input type="hidden" value="ok" name="submitted" />
         	
         	<input type="text" value="" name="keyword" required />&nbsp;&nbsp;&nbsp;
         	<input type="submit" value="Rechercher" />

@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jdt.internal.compiler.codegen.IntegerCache;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
 import java.util.Date;
 
 import meserreurs.MonException;
@@ -24,8 +28,6 @@ public class Controleur extends HttpServlet
 	private static final String ACTION_TYPE = "action";
 	private static final String SAISIE_STAGE = "saisieStage";
 	private static final String AFFICHER_STAGE = "afficheStage";
-	private static final String AJOUT_STAGE = "ajoutStage";
-	private static final String MODIFIER_STAGE = "modifierStage";
 	private static final String RECHERCHER_STAGE = "rechercheStage";
 	private static final String ERROR_PAGE = null;
 
@@ -45,72 +47,98 @@ public class Controleur extends HttpServlet
 	{
 		String actionName = request.getParameter(ACTION_TYPE);
 		String destinationPage = ERROR_PAGE;
-			
-		try 
+		
+		//Executer les actions
+		if (SAISIE_STAGE.equals(actionName))
 		{
-			//Executer les actions
-			if (SAISIE_STAGE.equals(actionName))
-			{
-				request.setAttribute("stage", new Stage());
-				
-				destinationPage = "/saisieStage.jsp";
-			} else if (AJOUT_STAGE.equals(actionName))
-			{
-				Stage unStage = new Stage();
-				unStage.setId(request.getParameter("id"));
-				unStage.setLibelle(request.getParameter("libelle"));
-				unStage.setDatedebut(conversionChaineenDate(request.getParameter("datedebut"), "yyyy/MM/dd"));
-				unStage.setDatefin(conversionChaineenDate(request.getParameter("datefin"), "yyyy/MM/dd"));
-				unStage.setNbplaces(Integer.parseInt(request.getParameter("nbplaces")));
-				unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
-				unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
-				unStage.insertionStage();
-				
-				destinationPage = "/index.jsp";
-			} else if (MODIFIER_STAGE.equals(actionName))
-			{
-				/*
-				int id = Integer.valueOf(request.getParameter("id")); //ID stage
-				
-				Stage monStage = Stage.find(id);
-				
-				if (request.getParameter("submitted") != null)
-				{ //formulaire envoyé
-					monStage.setLibelle(request.getParameter("libelle"));
-					//faire pareil pour le reste des attributs
-					
-					monStage.update(); //mis à jour SQL du stage
+			String typeAction = request.getParameter("typeAction");
+			
+			try {
+				Stage unStage = null;
+				if ((typeAction == null || (typeAction != null && typeAction.contentEquals("modif"))) 
+						&& request.getParameter("id") != null)
+				{ //Page modif et variable ID existe
+					//unStage = Stage.find(request.getParameter("id")); //Rechercher le stage par son ID
+				} else {
+					unStage = new Stage();
 				}
 				
-				destinationPage = "/modifierStage.jsp";
-				*/
-			}
-			else if (AFFICHER_STAGE.equals(actionName))
+				request.setAttribute("stage", unStage); 
+				
+				if (typeAction != null && (typeAction.contentEquals("ajout") || typeAction.contentEquals("modif")))
+				{ //Formulaire envoyé
+					boolean valid = true;
+					try {
+						unStage.setId(request.getParameter("id"));
+						unStage.setLibelle(request.getParameter("libelle"));
+						unStage.setDatedebut(conversionChaineenDate(request.getParameter("datedebut"), "yyyy/MM/dd"));
+						unStage.setDatefin(conversionChaineenDate(request.getParameter("datefin"), "yyyy/MM/dd"));
+						unStage.setNbplaces(Integer.parseInt(request.getParameter("nbplaces")));
+						unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
+						unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
+					} catch (ParseException pe) {
+						request.setAttribute("MesErreurs", "Impossible de convertir une date (yyyy/MM/dd).");
+						System.out.println(pe);
+						valid = false;
+					} catch (NumberFormatException nfe) {
+						request.setAttribute("MesErreurs", "Nombre de place incorrect");
+						System.out.println(nfe);
+						valid = false;
+					}
+
+					if (valid)
+					{
+						if (typeAction.contentEquals("ajout"))
+						{
+							unStage.insertionStage(); //insertion en bd
+							request.setAttribute("messSuccess", "Le stage a bien été inséré!");
+						} else if (typeAction.contentEquals("modif")) 
+						{
+							//unStage.updateStage();
+							request.setAttribute("messSuccess", "Le stage a bien été mise à jour!");
+						}
+					}
+				} 
+			} catch (Exception e)
 			{
+				request.setAttribute("MesErreurs", e.getMessage());
+				System.out.println(e);
+			}
+			
+			destinationPage = "/saisieStage.jsp";
+		} 
+		else if (AFFICHER_STAGE.equals(actionName))
+		{
+			try {
 				request.setAttribute("affichageListe", 1);
 				
 				List<Stage> listeStages = Stage.rechercheLesStages();
 				request.setAttribute("liste", listeStages);
-				
-				destinationPage = "/afficherStages.jsp";
-			} 
-			else if (RECHERCHER_STAGE.equals(actionName))
+			} catch (Exception e)
 			{
-				if (request.getParameter("submitted") != null)
+				request.setAttribute("MesErreurs", e.getMessage());
+				System.out.println(e.getMessage());
+			}
+			
+			destinationPage = "/afficherStages.jsp";
+		} 
+		else if (RECHERCHER_STAGE.equals(actionName))
+		{
+			try {
+				if (request.getParameter("keyword") != null)
 				{ //formulaire envoyé
 					List<Stage> listeStages = Stage.rechercheUnStage(request.getParameter("keyword"));
 					request.setAttribute("liste", listeStages);
 				}
+			} catch (Exception e)
+			{
+				request.setAttribute("MesErreurs", e.getMessage());
+				System.out.println(e.getMessage());
+			}
 			
-				destinationPage = "/rechercherStage.jsp";
-			} 	
-		} catch (Exception e) 
-		{ //Erreurs
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "/Erreur.jsp";
-			System.out.println(e.getMessage());
-		}
-			
+			destinationPage = "/rechercherStage.jsp";
+		} 	
+		
 		// Redirection vers la page jsp appropriee 
 	    RequestDispatcher dispatcher =getServletContext().getRequestDispatcher(destinationPage);
         dispatcher.forward(request, response); 
