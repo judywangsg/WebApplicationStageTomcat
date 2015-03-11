@@ -81,21 +81,78 @@ public class Stage {
 	
 	/* traitements métier */
 	
-	public void insertionStage()	throws MonException 
+	/**
+	 * Insertion du stage dans la base de donnée
+	 * @throws MonException
+	 */
+	public void insertionStage() throws MonException 
 	{   
 	    String mysql="";
 		DateFormat dateFormatpers = new SimpleDateFormat("yyyy-MM-dd");
 	    String dd = dateFormatpers.format(this.getDatedebut());
 		String df = dateFormatpers.format(this.getDatefin());
-
 		
 		mysql = "INSERT INTO stages (id, libelle, datedebut ,";
 		mysql = mysql + " datefin, nbplaces, nbinscrits) ";
 		mysql = mysql + " VALUES ( \'" + this.getId() + "\', \'" + this.getLibelle() + "\', ";
 		mysql = mysql + "\' " + dd + "\', " + "\' " + df + "\', ";
 		mysql = mysql + this.getNbplaces() + ", " + this.getNbinscrits() + " )";
+		
 		DialogueBd.insertionBD(mysql);
 	} 
+	
+	/**
+	 * Mise à jour du stage dans la base de donnée
+	 * @throws MonException
+	 */
+	public void updateStage() throws MonException
+	{
+		String mysql="";
+		DateFormat dateFormatpers = new SimpleDateFormat("yyyy-MM-dd");
+	    String dd = dateFormatpers.format(this.getDatedebut());
+		String df = dateFormatpers.format(this.getDatefin());
+		
+		mysql = "UPDATE stages SET ";
+		mysql += "id = '"+this.id+"'";
+		mysql += ", libelle = '"+this.getLibelle()+"'";
+		mysql += ", datedebut = '"+dd+"'";
+		mysql += ", datefin = '"+df+"'";
+		mysql += ", nbplaces = '"+this.getNbplaces()+"'";
+		mysql += ", nbinscrits = '"+this.getNbinscrits()+"' ";
+		mysql += "WHERE id = '"+this.id+"'";
+		
+		DialogueBd.insertionBD(mysql);
+	}
+
+	/**
+	 * Trouver un Stage selon son ID
+	 * @param id : id du stage
+	 * @return Stage 
+	 * @throws MonException
+	 * @throws ParseException
+	 */
+	public static Stage find(String id) throws MonException, ParseException
+	{
+		String mysql = "SELECT * FROM stages WHERE id = '"+id+"'";
+		
+		List<Object> rs = DialogueBd.lecture(mysql); 
+		Stage stage = null;
+		
+		if (rs.size() >= 0)
+		{ //retourner le stage
+			// il faut redecouper la liste pour retrouver les lignes
+			stage = new Stage();
+			stage.setId(rs.get(0).toString());
+			stage.setLibelle(rs.get(1).toString());
+			DateFormat dateFormatpers = new SimpleDateFormat("yyyy-MM-dd");
+			stage.setDatedebut(dateFormatpers.parse(rs.get(2).toString()));
+			stage.setDatefin((dateFormatpers.parse(rs.get(3).toString())));
+			stage.setNbplaces( Integer.parseInt(rs.get(4).toString()));
+			stage.setNbinscrits( Integer.parseInt(rs.get(5).toString()));
+		}
+		
+        return stage;
+	}
 	
 	public static List<Stage> rechercheLesStages() throws MonException, ParseException
 	{

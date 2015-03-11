@@ -58,7 +58,8 @@ public class Controleur extends HttpServlet
 				if ((typeAction == null || (typeAction != null && typeAction.contentEquals("modif"))) 
 						&& request.getParameter("id") != null)
 				{ //Page modif et variable ID existe
-					//unStage = Stage.find(request.getParameter("id")); //Rechercher le stage par son ID
+					System.out.println("find by id "+request.getParameter("id"));
+					unStage = Stage.find(request.getParameter("id")); //Rechercher le stage par son ID
 				} else {
 					unStage = new Stage();
 				}
@@ -94,7 +95,7 @@ public class Controleur extends HttpServlet
 							request.setAttribute("messSuccess", "Le stage a bien été inséré!");
 						} else if (typeAction.contentEquals("modif")) 
 						{
-							//unStage.updateStage();
+							unStage.updateStage();
 							request.setAttribute("messSuccess", "Le stage a bien été mise à jour!");
 						}
 					}
