@@ -1,6 +1,5 @@
 package controle;
 
-import java.beans.DesignMode;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -11,8 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.eclipse.jdt.internal.compiler.codegen.IntegerCache;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -58,10 +55,11 @@ public class Controleur extends HttpServlet
 				if ((typeAction == null || (typeAction != null && typeAction.contentEquals("modif"))) 
 						&& request.getParameter("id") != null)
 				{ //Page modif et variable ID existe
-					System.out.println("find by id "+request.getParameter("id"));
 					unStage = Stage.find(request.getParameter("id")); //Rechercher le stage par son ID
+					request.setAttribute("type", "modif"); //Attribut pour la vue
 				} else {
 					unStage = new Stage();
+					request.setAttribute("type", "ajout"); //Attribut pour la vue
 				}
 				
 				request.setAttribute("stage", unStage); 
@@ -93,6 +91,7 @@ public class Controleur extends HttpServlet
 						{
 							unStage.insertionStage(); //insertion en bd
 							request.setAttribute("messSuccess", "Le stage a bien été inséré!");
+							request.setAttribute("type", "modif"); //Vue modification
 						} else if (typeAction.contentEquals("modif")) 
 						{
 							unStage.updateStage();
