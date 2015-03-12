@@ -26,7 +26,7 @@ public class Controleur extends HttpServlet
 	private static final String SAISIE_STAGE = "saisieStage";
 	private static final String AFFICHER_STAGE = "afficheStage";
 	private static final String RECHERCHER_STAGE = "rechercheStage";
-	private static final String ERROR_PAGE = null;
+	private static final String ERROR_PAGE = "/index.jsp";
 
 	// le format est une combinaison de MM dd yyyy avec / ou –
 	// exemple dd/MM/yyyy
@@ -76,11 +76,11 @@ public class Controleur extends HttpServlet
 						unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
 						unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
 					} catch (ParseException pe) {
-						request.setAttribute("MesErreurs", "Impossible de convertir une date (yyyy/MM/dd).");
+						request.setAttribute("MessError", "Impossible de convertir une date (yyyy/MM/dd).");
 						System.out.println(pe);
 						valid = false;
 					} catch (NumberFormatException nfe) {
-						request.setAttribute("MesErreurs", "Nombre de place incorrect");
+						request.setAttribute("MessError", "Nombre de place incorrect");
 						System.out.println(nfe);
 						valid = false;
 					}
@@ -101,7 +101,7 @@ public class Controleur extends HttpServlet
 				} 
 			} catch (Exception e)
 			{
-				request.setAttribute("MesErreurs", e.getMessage());
+				request.setAttribute("MessError", e.getMessage());
 				System.out.println(e);
 			}
 			
@@ -116,7 +116,7 @@ public class Controleur extends HttpServlet
 				request.setAttribute("liste", listeStages);
 			} catch (Exception e)
 			{
-				request.setAttribute("MesErreurs", e.getMessage());
+				request.setAttribute("MessError", e.getMessage());
 				System.out.println(e.getMessage());
 			}
 			
@@ -132,7 +132,7 @@ public class Controleur extends HttpServlet
 				}
 			} catch (Exception e)
 			{
-				request.setAttribute("MesErreurs", e.getMessage());
+				request.setAttribute("MessError", e.getMessage());
 				System.out.println(e.getMessage());
 			}
 			
