@@ -46,7 +46,7 @@ public class Controleur extends HttpServlet
 		String destinationPage = ERROR_PAGE;
 		
 		/*
-		 * Un message peut s'afficher (alert bootstrap dans layout) 
+		 * Un message s'affiche (alert bootstrap dans layout) 
 		 * en utilisant les attributs suivant (request.setAttribut('', '')) :
 		 * 	- messSuccess : message en cas de succès (cadre vert)
 		 * 	- messInfo (cadre bleu)
@@ -85,11 +85,11 @@ public class Controleur extends HttpServlet
 						unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbplaces"))).intValue());
 						unStage.setNbinscrits(Integer.valueOf((request.getParameter("nbinscrits"))).intValue());
 					} catch (ParseException pe) {
-						request.setAttribute("MessError", "Impossible de convertir une date (yyyy/MM/dd).");
+						request.setAttribute("messError", "Impossible de convertir une date (yyyy/MM/dd).");
 						System.out.println(pe);
 						valid = false;
 					} catch (NumberFormatException nfe) {
-						request.setAttribute("MessError", "Nombre de place incorrect");
+						request.setAttribute("messError", "Nombre de place incorrect");
 						System.out.println(nfe);
 						valid = false;
 					}
@@ -110,7 +110,7 @@ public class Controleur extends HttpServlet
 				} 
 			} catch (Exception e)
 			{
-				request.setAttribute("MessError", e.getMessage());
+				request.setAttribute("messError", e.getMessage());
 				System.out.println(e);
 			}
 			
@@ -125,7 +125,7 @@ public class Controleur extends HttpServlet
 				request.setAttribute("liste", listeStages);
 			} catch (Exception e)
 			{
-				request.setAttribute("MessError", e.getMessage());
+				request.setAttribute("messError", e.getMessage());
 				System.out.println(e.getMessage());
 			}
 			
@@ -144,7 +144,7 @@ public class Controleur extends HttpServlet
 				}
 			} catch (Exception e)
 			{ //Si un problème survient, on ajoute l'attribut messError pour afficher l'alerte dans la vue
-				request.setAttribute("MessError", e.getMessage());
+				request.setAttribute("messError", e.getMessage());
 				System.out.println(e.getMessage());
 			}
 			*/
