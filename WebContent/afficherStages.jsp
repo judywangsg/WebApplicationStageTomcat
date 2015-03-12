@@ -19,9 +19,7 @@
     	Listing des Stages
     </jsp:attribute>
     
-    <jsp:body>
-        <P><A href="index.jsp"><FONT face="Arial" color="#004080">Retour Accueil</FONT></A></P>
-        
+    <jsp:body>       
         <table class="table">
 	  		<CAPTION> Tableau des Stages </CAPTION>
 	  		<tr>
