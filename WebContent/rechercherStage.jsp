@@ -13,8 +13,10 @@
         <form method="post" action="Controleur">
         	<input type="hidden" value="rechercheStage" name="action" />
         	
-        	<input type="text" value="" name="keyword" required />&nbsp;&nbsp;&nbsp;
+        	<input type="text" value="${keyword}" name="keyword" required />&nbsp;&nbsp;&nbsp;
         	<input type="submit" value="Rechercher" />
         </form>
+        
+        <!-- La page rechercher affiche la liste des stages comme la page afficherStages, pourquoi pas combiner les deux pages ?  -->
     </jsp:body>
 </t:layout>
