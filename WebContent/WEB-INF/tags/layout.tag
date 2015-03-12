@@ -13,7 +13,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>
-			<jsp:invoke fragment="pageTitle"/><% //Titre de la page %>
+			<jsp:invoke fragment="pageTitle"/> ~ Gestion Stages<% //Titre de la page %>
 		</title>
 		
 		<link rel="icon" type="image/png" href="images/icone.png" />
@@ -27,7 +27,7 @@
 	</head>
   	<body>
   		<!--  MENU  -->
-	    <nav class="navbar navbar-default">
+	    <nav class="navbar navbar-default" style="margin-bottom:0px;">
 		  	<div class="container-fluid">
 			    <div class="navbar-header">
 			      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -58,41 +58,51 @@
 	  		</div><!-- /.container-fluid -->
 		</nav>
 	    
-	    <div class="container">
+	    <div class="container-fluid">
 	    	<!-- TITLE -->
-	    	<h1 class="text-center">
-	    		<jsp:invoke fragment="title"/> <% //Titre %>
-	    	</h1>
-	  
-	  		<!-- ALERTS -->
-	    	<c:if test="${not empty messSuccess}">
-	    		<div class="alert alert-success alert-dismissible" role="alert">
-	    			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	    			${messSuccess}
+	    	<div class="row">
+	    		<div class="col-md-12">
+	    			<h2>
+	    				<jsp:invoke fragment="title"/> <% //Titre %>
+	    			</h2>
 	    		</div>
-	    	</c:if>
-	    	<c:if test="${not empty messInfo}">
-	    		<div class="alert alert-info alert-dismissible" role="alert">
-	    			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	    			${messInfo}
-	    		</div>
-	    	</c:if>
-	    	<c:if test="${not empty messWarning}">
-	    		<div class="alert alert-warning alert-dismissible" role="alert">
-	    			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	    			${messWarning}
-	    		</div>
-	    	</c:if>
-	    	<c:if test="${not empty messError}">
-	    		<div class="alert alert-danger alert-dismissible" role="alert">
-	    			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	    			${messError}
-	    		</div>
-	    	</c:if>
+	    	</div>
+	    	
+	  		<div class="row">
+	  			<div class="col-md-12">
+	  				<!-- ALERTS -->
+			    	<c:if test="${not empty messSuccess}">
+			    		<div class="alert alert-success alert-dismissible" role="alert">
+			    			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			    			${messSuccess}
+			    		</div>
+			    	</c:if>
+			    	<c:if test="${not empty messInfo}">
+			    		<div class="alert alert-info alert-dismissible" role="alert">
+			    			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			    			${messInfo}
+			    		</div>
+			    	</c:if>
+			    	<c:if test="${not empty messWarning}">
+			    		<div class="alert alert-warning alert-dismissible" role="alert">
+			    			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			    			${messWarning}
+			    		</div>
+			    	</c:if>
+			    	<c:if test="${not empty messError}">
+			    		<div class="alert alert-danger alert-dismissible" role="alert">
+			    			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			    			${messError}
+			    		</div>
+			    	</c:if>
+	  			</div>
+	  		</div>
 	    	
 	    	<!--  CONTENT  -->
-	    	<div id="content">
-		      	<jsp:doBody /> <% //Contenu de la page %>
+	    	<div class="row">
+	    		<div class="col-md-12">
+		      		<jsp:doBody /> <% //Contenu de la page %>
+		      	</div>
 		    </div>
 	    </div>
 	   

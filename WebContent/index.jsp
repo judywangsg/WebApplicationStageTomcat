@@ -10,9 +10,7 @@
 <t:layout>
 	<jsp:attribute name="pageTitle">Accueil</jsp:attribute>
 
-    <jsp:attribute name="title">
-    	 Gestion des Stages  HIGH TECH 
-    </jsp:attribute>
+    <jsp:attribute name="title">Gestion des Stages  HIGH TECH</jsp:attribute>
     
     <jsp:body>
    		<H2> Nous sommes le ${dateNow} </H2>
