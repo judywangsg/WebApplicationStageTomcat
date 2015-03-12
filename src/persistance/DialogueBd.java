@@ -41,7 +41,7 @@ public class DialogueBd {
 	     {   
 	    	 System.out.println("ErreurSQL :" +  e.getMessage () );
 	    	 System.out.println(mysql);
-	    	 new MonException(e.getMessage());
+	    	 throw new MonException(e.getMessage());
 	     }       
 	} 
 
