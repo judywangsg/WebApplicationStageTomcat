@@ -45,6 +45,15 @@ public class Controleur extends HttpServlet
 		String actionName = request.getParameter(ACTION_TYPE);
 		String destinationPage = ERROR_PAGE;
 		
+		/*
+		 * Un message peut s'afficher (alert bootstrap dans layout) 
+		 * en utilisant les attributs suivant (request.setAttribut('', '')) :
+		 * 	- messSuccess : message en cas de succès (cadre vert)
+		 * 	- messInfo (cadre bleu)
+		 * 	- messWarning (cadre orange)
+		 * 	- messError (cadre rouge)
+		 */
+		
 		//Executer les actions
 		if (SAISIE_STAGE.equals(actionName))
 		{
@@ -65,7 +74,7 @@ public class Controleur extends HttpServlet
 				request.setAttribute("stage", unStage); 
 				
 				if (typeAction != null && (typeAction.contentEquals("ajout") || typeAction.contentEquals("modif")))
-				{ //Formulaire envoyé
+				{ //Formulaire envoyé avec les champs pour un stage
 					boolean valid = true;
 					try {
 						unStage.setId(request.getParameter("id"));
@@ -124,18 +133,23 @@ public class Controleur extends HttpServlet
 		} 
 		else if (RECHERCHER_STAGE.equals(actionName))
 		{
-			try {
+			/*try {
 				if (request.getParameter("keyword") != null)
-				{ //formulaire envoyé
-					List<Stage> listeStages = Stage.rechercheUnStage(request.getParameter("keyword"));
+				{ //Quand le formulaire de la vue rechercherStage est envoyé, le paramètre keyword existe (champ text)
+					//On recherche un ou plusieurs stage selon le mot clé que l'utilisateur a tapé
+					List<Stage> listeStages = Stage.rechercheUnStage(request.getParameter("keyword")); 
+					
+					//On ajoute la liste comme attribut pour y avoir accès dans la vue
 					request.setAttribute("liste", listeStages);
 				}
 			} catch (Exception e)
-			{
+			{ //Si un problème survient, on ajoute l'attribut messError pour afficher l'alerte dans la vue
 				request.setAttribute("MessError", e.getMessage());
 				System.out.println(e.getMessage());
 			}
+			*/
 			
+			//Affichage de la vue rechercherStage par défaut
 			destinationPage = "/rechercherStage.jsp";
 		} 	
 		
