@@ -101,7 +101,9 @@
 	    	<!--  CONTENT  -->
 	    	<div class="row">
 	    		<div class="col-md-12">
-		      		<jsp:doBody /> <% //Contenu de la page %>
+	    			<div class="well well-lg">
+		      			<jsp:doBody /> <% //Contenu de la page %>
+		      		</div>
 		      	</div>
 		    </div>
 	    </div>
