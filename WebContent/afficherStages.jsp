@@ -5,10 +5,18 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:layout>
-	<jsp:attribute name="pageTitle">Affichage de tous les stages e</jsp:attribute>
+	<jsp:attribute name="pageTitle">Affichage de tous les stages</jsp:attribute>
+	
+    <jsp:attribute name="css">
+    	<style type="text/css">
+    		th {
+    			text-align:center;
+    		}
+    	</style>
+    </jsp:attribute>
 	
     <jsp:attribute name="title">
-    	Listing&nbsp;des Stages
+    	Listing des Stages
     </jsp:attribute>
     
     <jsp:body>
@@ -26,9 +34,9 @@
 	 		</tr>
 		 
 		 	<c:forEach  items="${liste}"  var="item" >
-		 	<tr>
+		 	<tr class="text-center">
 		     	<td>${item.id}</td>
-		     	<td>${item.libelle}</td>
+		     	<td class="text-left">${item.libelle}</td>
 		      	<td>
 		      		<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${item.datedebut}" pattern="dd/MM/yyyy"/>
 		      	</td>
@@ -38,6 +46,7 @@
 		       
 		      	<td>${item.nbplaces}</td>
 			  	<td>${item.nbinscrits}</td>
+			  	<td><a class="btn btn-default" href="Controleur?action=saisieStage&id=${item.id}">Modifier</a>
 		  	</tr>
 		 	</c:forEach>
 		</TABLE>
