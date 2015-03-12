@@ -25,49 +25,60 @@
     </jsp:attribute>
     
     <jsp:body>
-	  	<form method="post" action="Controleur?action=saisieStage">
+	  	<form method="post" action="Controleur?action=saisieStage" class="form-horizontal">
 	  		<input type="hidden" name="typeAction" value="${type}"  id="type"/>
-		  	<table>
-		    	<!-- input fields -->
-			    <tr>
-			      <td>Numéro</td>
-			      <td><input type="text" name="id" value="${stage.id}" id="id" /></td>
-			    </tr>
-			    <tr>
-			      <td>Libellé</td>
-			      <td><input type="text" name="libelle" value="${stage.libelle}" id="libelle"/></td>
-			    </tr>
-			    <tr>
-			    <td>Date de début du stage</td>
-			     <td><input type="text" name="datedebut" value="${dd}" id="datedebut"/></td>
-			     </tr>
-			      <tr>
-			      <td>Date de fin de stage</td>
-			     <td><input type="text" name="datefin" value="${df}" id="datefin"/></td>
-			    </tr>
-			    
-			    <tr>
-			      <td>Nombre de places </td>
-			      <td><input type="text" name="nbplaces" value="${stage.nbplaces}" id="nbplaces"/></td>
-			    </tr>
-			    <tr>
-			      <td>Nombre d'inscrits </td>
-			      <td><input type="text" name="nbinscrits" value="${stage.nbinscrits}" id="nbinscrits"/></td>
-			    </tr>
-			    <!-- Boutons Ajouter/Reset -->
-			    <tr>
-			      <td colspan="2">
-			      	<c:if test="${type == 'ajout'}">
-					   <input type="submit" name="ajouter" value="Ajouter" />
-					</c:if>
-			        <c:if test="${type == 'modif'}">
-					   <input type="submit" name="ajouter" value="Modifier" />
-					</c:if>
-			        &nbsp;&nbsp;
-			        <input type="reset" name="reset" value="Reset" />
-			      </td>
-			    </tr>
-		  	</table>
+	  		
+	  		<div class="form-group">
+	  			<label for="id" class="control-label col-md-2">Numéro</label>
+	  			<div class="col-md-1">
+	  				<input class="form-control" type="text" name="id" value="${stage.id}" id="id" placeholder="Numéro unique parmi tous les stages" required />
+	  			</div>
+	  		</div>
+	  		
+	  		<div class="form-group">
+	  			<label for="libelle" class="control-label col-md-2">Libellé</label>
+	  			<div class="col-md-5">
+	  				<input type="text" class="form-control" placeholder="Nom du stage" name="libelle" value="${stage.libelle}" id="libelle" required />
+	  			</div>
+	  		</div>
+	  		
+	  		<div class="form-group">
+	  			<label for="datedebut" class="control-label col-md-2">Date de début du stage</label>
+	  			<div class="col-md-4">
+	  				<input type="text" class="form-control" placeholder="Format yyyy/mm/dd" name="datedebut" value="${dd}" id="datedebut" required />
+	  			</div>
+	  		</div>
+	  		
+	  		<div class="form-group">
+	  			<label for="datefin" class="control-label col-md-2">Date de fin de stage</label>
+	  			<div class="col-md-4">
+	  				<input type="text"  class="form-control"  placeholder="Format yyyy/mm/dd" name="datefin" value="${df}" id="datefin" required />
+	  			</div>
+	  		</div>
+	  		
+	  		<div class="form-group">
+	  			<label for="nbplaces" class="control-label col-md-2">Nombre de places</label>
+	  			<div class="col-md-1">
+	  				<input type="text"  class="form-control" name="nbplaces" value="${stage.nbplaces}" id="nbplaces" required/>
+	  			</div>
+	  		</div>
+	  		
+	  		<div class="form-group">
+	  			<label for="nbinscrits" class="control-label col-md-2">Nombre d'inscrits</label>
+	  			<div class="col-md-1">
+	  				<input type="text"  class="form-control"  name="nbinscrits" value="${stage.nbinscrits}" id="nbinscrits" required/>
+	  			</div>
+	  		</div>
+	  		
+	  		<div class="form-group text-right">
+  				<c:if test="${type == 'ajout'}">
+				   <input type="submit" class="btn btn-primary" value="Ajouter" />
+				</c:if>
+		        <c:if test="${type == 'modif'}">
+				   <input type="submit" class="btn btn-primary" value="Modifier" />
+				</c:if>
+  				<input type="reset" class="btn btn-default" value="Reset" />
+	  		</div>
 	  	</form>
     </jsp:body>
 </t:layout>
