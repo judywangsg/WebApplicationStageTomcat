@@ -13,7 +13,8 @@
     <jsp:attribute name="title">Gestion des Stages  HIGH TECH</jsp:attribute>
     
     <jsp:body>
-   		<H2> Nous sommes le ${dateNow} </H2>
+   		<div>Nous sommes le ${dateNow}</div>
+   		<br/>
         <div id="menu">
 		  <ul>
 		      <li><a href="Controleur?action=saisieStage">Saisie d'un stage</a></li>
