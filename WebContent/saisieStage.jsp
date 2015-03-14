@@ -18,14 +18,14 @@
 %>
 
 <t:layout>
-	<jsp:attribute name="pageTitle">Saisie d'un stage</jsp:attribute>
+	<jsp:attribute name="pageTitle">Saisie d'un stage</jsp:attribute>	
 
     <jsp:attribute name="title">
     	Formulaire <c:if test="${type == 'ajout'}">d'ajout</c:if><c:if test="${type == 'modif'}">de modification</c:if> d'un stage
     </jsp:attribute>
     
     <jsp:body>
-	  	<form method="post" action="Controleur?action=saisieStage" class="form-horizontal">
+	  	<form method="post" action="Controleur?action=saisieStage" class="form-horizontal" id="form">
 	  		<input type="hidden" name="typeAction" value="${type}"  id="type"/>
 	  		
 	  		<div class="form-group">
@@ -72,12 +72,12 @@
 	  		
 	  		<div class="form-group text-right">
   				<c:if test="${type == 'ajout'}">
-				   <input type="submit" class="btn btn-primary" value="Ajouter" />
+				    <input type="submit" class="btn btn-primary" value="Ajouter" />
+  					<input type="reset" class="btn btn-default" value="Reset" />
 				</c:if>
 		        <c:if test="${type == 'modif'}">
 				   <input type="submit" class="btn btn-primary" value="Modifier" />
 				</c:if>
-  				<input type="reset" class="btn btn-default" value="Reset" />
 	  		</div>
 	  	</form>
     </jsp:body>
