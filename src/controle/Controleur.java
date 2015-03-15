@@ -121,7 +121,7 @@ public class Controleur extends HttpServlet
 			try {
 				request.setAttribute("affichageListe", 1);
 				
-				List<Stage> listeStages = Stage.rechercheLesStages();
+				List<Stage> listeStages = Stage.rechercheLesStages("");
 				request.setAttribute("liste", listeStages);
 			} catch (Exception e)
 			{
@@ -133,11 +133,11 @@ public class Controleur extends HttpServlet
 		} 
 		else if (RECHERCHER_STAGE.equals(actionName))
 		{
-			/*try {
-				if (request.getParameter("keyword") != null)
-				{ //Quand le formulaire de la vue rechercherStage est envoyé, le paramètre keyword existe (champ text)
+			try {
+				if (request.getParameter("champ") != null)
+				{ //Quand le formulaire de la vue rechercherStage est envoyé, le paramètre champ existe (champ text)
 					//On recherche un ou plusieurs stage selon le mot clé que l'utilisateur a tapé
-					List<Stage> listeStages = Stage.rechercheUnStage(request.getParameter("keyword")); 
+					List<Stage> listeStages = Stage.rechercheLesStages(request.getParameter("champ")); 
 					
 					//On ajoute la liste comme attribut pour y avoir accès dans la vue
 					request.setAttribute("liste", listeStages);
@@ -147,7 +147,6 @@ public class Controleur extends HttpServlet
 				request.setAttribute("messError", e.getMessage());
 				System.out.println(e.getMessage());
 			}
-			*/
 			
 			//Affichage de la vue rechercherStage par défaut
 			destinationPage = "/rechercherStage.jsp";

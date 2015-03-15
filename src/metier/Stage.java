@@ -154,7 +154,7 @@ public class Stage {
         return stage;
 	}
 	
-	public static List<Stage> rechercheLesStages() throws MonException, ParseException
+	public static List<Stage> rechercheLesStages(String champ) throws MonException, ParseException
 	{
 		List<Object> rs;
 		List<Stage> mesStages = new ArrayList<Stage>();
@@ -162,7 +162,12 @@ public class Stage {
 		
 		String mysql = "";
 		
-		mysql = "SELECT * FROM stages ORDER BY id ASC";
+		if (champ == "")
+		{
+			mysql = "SELECT * FROM stages ORDER BY id ASC";
+		}else {
+			mysql = "SELECT * FROM stages ORDER BY id ASC where libelle like '%"+champ+"%'";
+		}
 		
 		rs= DialogueBd.lecture(mysql); 
 		
@@ -188,7 +193,7 @@ public class Stage {
         return mesStages;
 	}
 	
-	public static List<Stage> rechercheUnStage(String cp) throws MonException, ParseException
+	/*public static List<Stage> rechercheUnStage(String cp) throws MonException, ParseException
 	{
 		List<Object> s;
 		List<Stage> unStage = new ArrayList<Stage>();
@@ -210,5 +215,5 @@ public class Stage {
         unStage.equals(s);
         
         return unStage;
-	}
+	}*/
 }

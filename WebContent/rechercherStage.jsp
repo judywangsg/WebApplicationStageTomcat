@@ -13,7 +13,7 @@
         <form method="post" action="Controleur">
         	<input type="hidden" value="rechercheStage" name="action" />
         	
-        	<input type="text" value="${keyword}" name="keyword" required />&nbsp;&nbsp;&nbsp;
+        	<input type="text" value="${champ}" name="champ" required />&nbsp;&nbsp;&nbsp;
         	<input type="submit" value="Rechercher" />
         </form>
         
