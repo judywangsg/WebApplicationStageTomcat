@@ -1,0 +1,10 @@
+/*
+	.maclass : pour une classe
+	#monid : pour un id
+	balise : pour une balise (du genre body, div..)
+*/
+
+.test {
+	background-color:yellow;
+}
+
