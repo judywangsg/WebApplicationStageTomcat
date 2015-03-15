@@ -18,7 +18,7 @@
 		
 		<link rel="icon" type="image/png" href="images/icone.png" />
 		
-		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme.min.css">
 		<link rel="stylesheet" type="text/css" href="css/layout.css">
 		
 		<jsp:invoke fragment="css"/> <% //Pour inclure des fichiers ou code css %>
@@ -50,7 +50,7 @@
 					         </div>
 				        </div>
 			     	</form>
-		     		<ul class="nav navbar-nav test">
+		     		<ul class="nav navbar-nav">
 				        <li><a href="Controleur?action=afficheStage">Liste complète</a></li>
 				        <li><a href="Controleur?action=saisieStage">Ajouter</a></li>
 				        <li><a href="Controleur?action=rechercheStage">Rechercher</a></li>
