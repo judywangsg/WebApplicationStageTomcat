@@ -73,7 +73,7 @@
 	  		<div class="form-group text-right">
   				<c:if test="${type == 'ajout'}">
 				    <input type="submit" class="btn btn-primary" value="Ajouter" />
-  					<input type="reset" class="btn btn-default" value="Reset" />
+  					<input type="reset" class="btn btn-warning" value="Reset" />
 				</c:if>
 		        <c:if test="${type == 'modif'}">
 				   <input type="submit" class="btn btn-primary" value="Modifier" />
