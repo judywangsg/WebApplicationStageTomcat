@@ -113,6 +113,8 @@
 		    </div>
 	    </div>
 	   
+	    <div class="well well-sm text-center" style="font-size: 11px; font-style: italic;">Elodie Mourier -- Quentin Vanhauteghem</div>
+	   
 	    <jsp:invoke fragment="javascripts"/> <% //Pour include des fichiers javascripts ou code javascript %>
 	    <script type="text/javascript">
     		$(document).ready(function() {
