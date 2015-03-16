@@ -49,8 +49,12 @@
 			    		<input type="hidden" value="rechercheStage" name="action" />
 				        <div class="form-group">
 				        	<div class="input-group">
-					        	<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-search"></i></span>
-					         	<input type="text" class="form-control" placeholder="Rechercher un stage">
+				        		<form method="post" action="Controleur?action=rechercheStage">
+						        	<span class="input-group-addon" id="basic-addon1">
+						        		<button style="padding:0px;" class="btn-link glyphicon glyphicon-search"></button>
+						        	</span>
+						         	<input type="text" class="form-control" placeholder="Rechercher un stage" name="champ" required>
+						         </form>
 					         </div>
 				        </div>
 			     	</form>
