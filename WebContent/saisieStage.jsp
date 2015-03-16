@@ -24,14 +24,6 @@
     	Formulaire <c:if test="${type == 'ajout'}">d'ajout</c:if><c:if test="${type == 'modif'}">de modification</c:if> d'un stage
     </jsp:attribute>
     
-    <jsp:attribute name="javascripts">
-    	<script type="text/javascript">
-    		$(document).ready(function() {
-    			$('.date').Zebra_DatePicker(); //activer datepicker 
-    		});	
-    	</script>
-    </jsp:attribute>
-    
     <jsp:body>
 	  	<form method="post" action="Controleur?action=saisieStage" class="form-horizontal" id="form">
 	  		<input type="hidden" name="typeAction" value="${type}"  id="type"/>
@@ -60,7 +52,7 @@
 	  		<div class="form-group">
 	  			<label for="datefin" class="control-label col-md-2">Date de fin de stage</label>
 	  			<div class="col-md-4">
-	  				<input type="text"  class="form-control date"  placeholder="Format yyyy/mm/dd" name="datefin" value="${df}" id="datefin" required />
+	  				<input type="text" class="form-control date"  placeholder="Format yyyy/mm/dd" name="datefin" value="${df}" id="datefin" required />
 	  			</div>
 	  		</div>
 	  		

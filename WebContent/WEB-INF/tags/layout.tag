@@ -20,6 +20,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme.min.css">
 		<link rel="stylesheet" type="text/css" href="lib/bootstrapDialog/css/bootstrap-dialog.min.css">
+		<link rel="stylesheet" href="lib/zebra_Datepicker/css/metallic.css" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/layout.css">
 		
 		<jsp:invoke fragment="css"/> <% //Pour inclure des fichiers ou code css %>
@@ -27,6 +28,7 @@
 		<script type="text/javascript" src="lib/jquery/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="lib/bootstrapDialog/js/bootstrap-dialog.min.js"></script>
+		<script type="text/javascript" src="lib/zebra_Datepicker/js/zebra_datepicker.js"></script>
 	</head>
   	<body>
   		<!--  MENU  -->
@@ -112,5 +114,16 @@
 	    </div>
 	   
 	    <jsp:invoke fragment="javascripts"/> <% //Pour include des fichiers javascripts ou code javascript %>
+	    <script type="text/javascript">
+    		$(document).ready(function() {
+    			$('.date')
+    				.Zebra_DatePicker({
+    					format : 'Y/m/d'
+    				}) //activer datepicker 
+    				.css('background-color', "#FFF")
+    				.css('cursor', 'text');
+    			
+    		});	
+    	</script>
   	</body>
 </html>
