@@ -1,20 +1,3 @@
-/*
-	.maclass : pour une classe
-	#monid : pour un id
-	balise : pour une balise (du genre body, div..)
-*/
-
-.test {
-	background-color:yellow;
-}
-
-.test1 {
-	color:red;	
-}
-
-.test2 {
-	color:blue;
-}
-.test3 {
-	color:orange;
+.lienAccueil {
+	color:orange;	
 }
