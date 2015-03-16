@@ -13,7 +13,7 @@
     <jsp:attribute name="title">Accueil gestion de stage</jsp:attribute>
     
     <jsp:body>
-   		<h4>Bonjour, Nous sommes le ${dateNow}</h4>
+   		<h4>Bonjour, nous sommes le ${dateNow}</h4>
    		
    		<div class="row">
    			<div class="col-md-1"></div>
