@@ -26,6 +26,7 @@ public class Controleur extends HttpServlet
 	private static final String SAISIE_STAGE = "saisieStage";
 	private static final String AFFICHER_STAGE = "afficheStage";
 	private static final String RECHERCHER_STAGE = "rechercheStage";
+	private static final String SUPPRIMER_STAGE = "supprimerStage";
 	private static final String ERROR_PAGE = "/index.jsp";
 
 	// le format est une combinaison de MM dd yyyy avec / ou –
@@ -98,12 +99,12 @@ public class Controleur extends HttpServlet
 					{
 						if (typeAction.contentEquals("ajout"))
 						{
-							unStage.insertionStage(); //insertion en bd
+							unStage.insertion(); //insertion en bd
 							request.setAttribute("messSuccess", "Le stage a bien été inséré!");
 							request.setAttribute("type", "modif"); //Vue modification
 						} else if (typeAction.contentEquals("modif")) 
 						{
-							unStage.updateStage();
+							unStage.update();
 							request.setAttribute("messSuccess", "Le stage a bien été mise à jour!");
 						}
 					}
@@ -116,6 +117,28 @@ public class Controleur extends HttpServlet
 			
 			destinationPage = "/saisieStage.jsp";
 		} 
+		else if (SUPPRIMER_STAGE.equals(actionName))
+		{
+			if (request.getParameter("id") != null)
+			{ //Paramètre "id" requis
+				try {
+					Stage stage = Stage.find(request.getParameter("id")); //Rechercher le stage par son ID
+					
+					if (stage != null)
+					{ //Un stage a ete trouve
+						stage.supprimer();
+						
+						request.setAttribute("messSuccess", "Le stage ( "+stage.getId()+": "+stage.getLibelle()+" ) a bien été supprimé !");
+					} else {
+						request.setAttribute("messError", "Stage inexistant dans la base de données !");
+					}
+				} catch (Exception e) {
+					request.setAttribute("messError", e.getMessage());
+				}
+			}
+			
+			destinationPage = "/index.jsp";
+		}
 		else if (AFFICHER_STAGE.equals(actionName))
 		{
 			try {
