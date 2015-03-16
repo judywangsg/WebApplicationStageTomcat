@@ -7,3 +7,8 @@ th {
 	color:orange;	
 }
 
+.lienAccueil:hover {
+	color:yellow;
+	text-decoration:none;
+}
+
