@@ -40,7 +40,7 @@
 				  	</ul>
 				</div>
 				<br />
-				<h5>La modification et suppression de stages se fait via les boutons sur les listes des stages.</h5>
+				<h5>La modification et suppression de stages se fait via les boutons sur la liste des stages.</h5>
 			</div>
    		</div>
     </jsp:body>
