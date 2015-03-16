@@ -31,7 +31,7 @@
 	  		<div class="form-group">
 	  			<label for="id" class="control-label col-md-2">Numéro</label>
 	  			<div class="col-md-1">
-	  				<input class="form-control" type="text" name="id" value="${stage.id}" id="id" placeholder="Numéro unique parmi tous les stages" required />
+	  				<input class="form-control" type="number" name="id" value="${stage.id}" id="id" placeholder="Num" step="1" min="1" required />
 	  			</div>
 	  		</div>
 	  		
@@ -59,14 +59,14 @@
 	  		<div class="form-group">
 	  			<label for="nbplaces" class="control-label col-md-2">Nombre de places</label>
 	  			<div class="col-md-1">
-	  				<input type="text"  class="form-control" name="nbplaces" value="${stage.nbplaces}" id="nbplaces" required/>
+	  				<input type="number"  class="form-control" name="nbplaces" value="${stage.nbplaces}" step="1" min="0" id="nbplaces" required/>
 	  			</div>
 	  		</div>
 	  		
 	  		<div class="form-group">
 	  			<label for="nbinscrits" class="control-label col-md-2">Nombre d'inscrits</label>
 	  			<div class="col-md-1">
-	  				<input type="text"  class="form-control"  name="nbinscrits" value="${stage.nbinscrits}" id="nbinscrits" required/>
+	  				<input type="number"  class="form-control" step="1" min="0"  name="nbinscrits" value="${stage.nbinscrits}" id="nbinscrits" required/>
 	  			</div>
 	  		</div>
 	  		
