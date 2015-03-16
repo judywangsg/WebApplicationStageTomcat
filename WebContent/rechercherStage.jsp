@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
@@ -24,7 +24,7 @@
     </jsp:attribute>
     
     <jsp:attribute name="javascripts">
-    	<script type="text/javascript" src="js/rechercher.js"></script>
+    	<script type="text/javascript" src="js/rechercher.js"  charset="UTF-8"></script>
     </jsp:attribute>
     
     <jsp:body>
@@ -33,7 +33,7 @@
 	        <form method="post" action="Controleur">
 	        	<input type="hidden" value="rechercheStage" name="action" />
 	        	
-	        	<input type="text" value="${champ}" name="champ" />&nbsp;&nbsp;&nbsp;
+	        	<input type="text" value="${champ}" name="champ" required />&nbsp;&nbsp;&nbsp;
 	        	<input type="submit" value="Rechercher" />
 	        </form>
 	         <br />
