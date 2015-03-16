@@ -24,7 +24,7 @@ public class Controleur extends HttpServlet
 	private static final long serialVersionUID = 1L;
 	private static final String ACTION_TYPE = "action";
 	private static final String SAISIE_STAGE = "saisieStage";
-	private static final String AFFICHER_STAGE = "afficheStage";
+	//private static final String AFFICHER_STAGE = "afficheStage";
 	private static final String RECHERCHER_STAGE = "rechercheStage";
 	private static final String SUPPRIMER_STAGE = "supprimerStage";
 	private static final String ERROR_PAGE = "/index.jsp";
