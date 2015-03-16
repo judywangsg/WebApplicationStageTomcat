@@ -157,6 +157,8 @@ public class Controleur extends HttpServlet
 		else if (RECHERCHER_STAGE.equals(actionName))
 		{
 			try {
+				request.setAttribute("champ", request.getParameter("champ")); //repasser la valeur dans la vue
+				
 				if (request.getParameter("champ") != null)
 				{ //Quand le formulaire de la vue rechercherStage est envoyé, le paramètre champ existe (champ text)
 					//On recherche un ou plusieurs stage selon le mot clé que l'utilisateur a tapé
