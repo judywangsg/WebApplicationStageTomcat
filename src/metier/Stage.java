@@ -85,7 +85,7 @@ public class Stage {
 	 * Insertion du stage dans la base de donnée
 	 * @throws MonException
 	 */
-	public void insertionStage() throws MonException 
+	public void insertion() throws MonException 
 	{   
 	    String mysql="";
 		DateFormat dateFormatpers = new SimpleDateFormat("yyyy-MM-dd");
@@ -105,7 +105,7 @@ public class Stage {
 	 * Mise à jour du stage dans la base de donnée
 	 * @throws MonException
 	 */
-	public void updateStage() throws MonException
+	public void update() throws MonException
 	{
 		String mysql="";
 		DateFormat dateFormatpers = new SimpleDateFormat("yyyy-MM-dd");
@@ -120,6 +120,19 @@ public class Stage {
 		mysql += ", nbplaces = '"+this.getNbplaces()+"'";
 		mysql += ", nbinscrits = '"+this.getNbinscrits()+"' ";
 		mysql += "WHERE id = '"+this.id+"'";
+		
+		DialogueBd.insertionBD(mysql);
+	}
+	
+	/**
+	 * Supprimer le stage de la base de données
+	 * @throws MonException
+	 */
+	public void supprimer() throws MonException
+	{
+		String mysql="";
+		
+		mysql += "DELETE FROM stages WHERE id='"+this.id+"'";
 		
 		DialogueBd.insertionBD(mysql);
 	}
