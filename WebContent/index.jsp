@@ -34,7 +34,7 @@
 				      	</li>
 				      	<li class="list-group-item">
 				      		<i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;&nbsp;
-				      		<a href="Controleur?action=rechercheStage" class="lienAccueil">Rechercher un ou plusieurs stage</a>
+				      		<a href="Controleur?action=rechercheStage" class="lienAccueil">Rechercher un stage</a>
 				      		<span class="badge"><a href="Controleur?action=rechercheStage"><i class="glyphicon glyphicon-search"></i></a></span>
 				      	</li>
 				  	</ul>
