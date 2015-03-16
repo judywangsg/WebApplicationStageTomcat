@@ -45,21 +45,19 @@
 		    	</div>
 		
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			    	<form class="navbar-form navbar-left" role="search" action="Controleur">
+			    	<form class="navbar-form navbar-left" method="post" role="search" action="Controleur">
 			    		<input type="hidden" value="rechercheStage" name="action" />
 				        <div class="form-group">
 				        	<div class="input-group">
-				        		<form method="post" action="Controleur?action=rechercheStage">
-						        	<span class="input-group-addon" id="basic-addon1">
-						        		<button style="padding:0px;" class="btn-link glyphicon glyphicon-search"></button>
-						        	</span>
-						         	<input type="text" class="form-control" placeholder="Rechercher un stage" name="champ">
-						         </form>
+					        	<span class="input-group-addon" id="basic-addon1">
+					        		<button style="padding:0px;" class="btn-link glyphicon glyphicon-search"></button>
+					        	</span>
+					         	<input type="text" class="form-control" placeholder="Rechercher un stage" name="champ" />
 					         </div>
 				        </div>
 			     	</form>
 		     		<ul class="nav navbar-nav">
-				        <li><a href="Controleur?action=afficheStage">Liste complète</a></li>
+				        <li><a href="Controleur?action=rechercheStage&complet">Liste complète</a></li>
 				        <li><a href="Controleur?action=saisieStage">Ajouter</a></li>
 				        <li><a href="Controleur?action=rechercheStage">Rechercher</a></li>
 			      	</ul>

@@ -29,8 +29,8 @@
 				      	</li>
 			      		<li class="list-group-item">
 			      			<i class="glyphicon glyphicon-list-alt"></i>&nbsp;&nbsp;&nbsp;
-				      		<a href="Controleur?action=afficheStage" class="lienAccueil">Afficher la liste complète des stages</a>
-				      		<span class="badge"><a href="Controleur?action=afficheStage"><i class="glyphicon glyphicon-list-alt"></i></a></span>
+				      		<a href="Controleur?action=rechercheStage&complet" class="lienAccueil">Afficher la liste complète des stages</a>
+				      		<span class="badge"><a href="Controleur?action=rechercheStage&complet"><i class="glyphicon glyphicon-list-alt"></i></a></span>
 				      	</li>
 				      	<li class="list-group-item">
 				      		<i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;&nbsp;

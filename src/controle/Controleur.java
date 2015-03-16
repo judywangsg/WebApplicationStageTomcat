@@ -139,11 +139,9 @@ public class Controleur extends HttpServlet
 			
 			destinationPage = "/index.jsp";
 		}
-		else if (AFFICHER_STAGE.equals(actionName))
+		/*else if (AFFICHER_STAGE.equals(actionName))
 		{
-			try {
-				request.setAttribute("affichageListe", 1);
-				
+			try {			
 				List<Stage> listeStages = Stage.rechercheLesStages("");
 				request.setAttribute("liste", listeStages);
 			} catch (Exception e)
@@ -152,17 +150,23 @@ public class Controleur extends HttpServlet
 				System.out.println(e.getMessage());
 			}
 			
-			destinationPage = "/afficherStages.jsp";
-		} 
+			destinationPage = "/rechercherStage.jsp";
+		}*/ 
 		else if (RECHERCHER_STAGE.equals(actionName))
 		{
 			try {
-				request.setAttribute("champ", request.getParameter("champ")); //repasser la valeur dans la vue
+				String champ = request.getParameter("champ");
+				if (request.getParameter("complet") != null)
+				{ //Affichage liste complète si paramètre "complet" existe
+					champ = "";
+				}
 				
-				if (request.getParameter("champ") != null)
-				{ //Quand le formulaire de la vue rechercherStage est envoyé, le paramètre champ existe (champ text)
+				request.setAttribute("champ", champ); //repasser la valeur dans la vue
+				
+				if (champ != null)
+				{ 
 					//On recherche un ou plusieurs stage selon le mot clé que l'utilisateur a tapé
-					List<Stage> listeStages = Stage.rechercheLesStages(request.getParameter("champ")); 
+					List<Stage> listeStages = Stage.rechercheLesStages(champ); // "" pour liste complète
 					
 					//On ajoute la liste comme attribut pour y avoir accès dans la vue
 					request.setAttribute("liste", listeStages);
