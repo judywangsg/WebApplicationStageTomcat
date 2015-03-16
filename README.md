@@ -5,3 +5,5 @@ http://getbootstrap.com/
 
 Utilisation de Bootstrap dialog pour les fenêtres modales : 
 http://nakupanda.github.io/bootstrap3-dialog/
+
+Utilisation de Zebra_Datepicker pour afficher un calendrier sur les input date : http://stefangabos.ro/jquery/zebra-datepicker/
