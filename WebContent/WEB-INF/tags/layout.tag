@@ -53,7 +53,7 @@
 						        	<span class="input-group-addon" id="basic-addon1">
 						        		<button style="padding:0px;" class="btn-link glyphicon glyphicon-search"></button>
 						        	</span>
-						         	<input type="text" class="form-control" placeholder="Rechercher un stage" name="champ" required>
+						         	<input type="text" class="form-control" placeholder="Rechercher un stage" name="champ">
 						         </form>
 					         </div>
 				        </div>
