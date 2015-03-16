@@ -19,12 +19,14 @@
 		<link rel="icon" type="image/png" href="images/icone.png" />
 		
 		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme.min.css">
+		<link rel="stylesheet" type="text/css" href="lib/bootstrapDialog/css/bootstrap-dialog.min.css">
 		<link rel="stylesheet" type="text/css" href="css/layout.css">
 		
 		<jsp:invoke fragment="css"/> <% //Pour inclure des fichiers ou code css %>
 		
 		<script type="text/javascript" src="lib/jquery/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="lib/bootstrapDialog/js/bootstrap-dialog.min.js"></script>
 	</head>
   	<body>
   		<!--  MENU  -->
