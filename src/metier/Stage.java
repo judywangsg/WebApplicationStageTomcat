@@ -179,7 +179,7 @@ public class Stage {
 		{
 			mysql = "SELECT * FROM stages ORDER BY id ASC";
 		}else {
-			mysql = "SELECT * FROM stages ORDER BY id ASC where libelle like '%"+champ+"%'";
+			mysql = "SELECT * FROM stages WHERE libelle like '%"+champ+"%' ORDER BY id ASC ";
 		}
 		
 		rs= DialogueBd.lecture(mysql); 

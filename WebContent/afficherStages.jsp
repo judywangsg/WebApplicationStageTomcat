@@ -51,7 +51,7 @@
 		 
 		 	<c:forEach  items="${liste}"  var="item" >
 		 	<tr class="text-center">
-		     	<td class="id">${item.id}</td>
+		     	<td class="id"><a href="Controleur?action=saisieStage&id=${item.id}">${item.id}</a></td>
 		     	<td class="text-left libelle">${item.libelle}</td>
 		      	<td>
 		      		<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${item.datedebut}" pattern="dd/MM/yyyy"/>

@@ -18,10 +18,10 @@
 		
 		<link rel="icon" type="image/png" href="images/icone.png" />
 		
-		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme.min.css">
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme_bleu.min.css">
 		<link rel="stylesheet" type="text/css" href="lib/bootstrapDialog/css/bootstrap-dialog.min.css">
 		<link rel="stylesheet" href="lib/zebra_Datepicker/css/metallic.css" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="css/layout.css">
+		<link rel="stylesheet" type="text/css" href="css/layout_bleu.css">
 		
 		<jsp:invoke fragment="css"/> <% //Pour inclure des fichiers ou code css %>
 		
@@ -32,7 +32,7 @@
 	</head>
   	<body>
   		<!--  MENU  -->
-	    <nav class="navbar navbar-inverse" style="margin-bottom:0px;">
+	    <nav class="navbar navbar-default" style="margin-bottom:0px;">
 		  	<div class="container-fluid">
 			    <div class="navbar-header">
 			      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
