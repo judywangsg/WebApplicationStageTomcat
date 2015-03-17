@@ -18,10 +18,16 @@
 		
 		<link rel="icon" type="image/png" href="images/icone.png" />
 		
-		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme_bleu.min.css">
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme_bleulight.min.css">
 		<link rel="stylesheet" type="text/css" href="lib/bootstrapDialog/css/bootstrap-dialog.min.css">
-		<link rel="stylesheet" href="lib/zebra_Datepicker/css/metallic.css" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="css/layout_bleu.css">
+		<link rel="stylesheet" href="lib/zebra_Datepicker/css/bootstrap.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/layout_bleulight.css">
+		
+		<style type="text/css">
+			.modal-backdrop {
+				z-index:0; /* Bug bootstrap 3.3.4 & bootstrapDialog */
+			}
+		</style>
 		
 		<jsp:invoke fragment="css"/> <% //Pour inclure des fichiers ou code css %>
 		
