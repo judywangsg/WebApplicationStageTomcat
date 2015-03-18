@@ -18,10 +18,10 @@
 		
 		<link rel="icon" type="image/png" href="images/icone.png" />
 		
-		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme_bleulight.min.css">
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme_bleu.min.css">
 		<link rel="stylesheet" type="text/css" href="lib/bootstrapDialog/css/bootstrap-dialog.min.css">
 		<link rel="stylesheet" href="lib/zebra_Datepicker/css/bootstrap.css" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="css/layout_bleulight.css">
+		<link rel="stylesheet" type="text/css" href="css/layout_bleu.css">
 		
 		<style type="text/css">
 			.modal-backdrop {
