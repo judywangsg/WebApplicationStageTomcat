@@ -31,47 +31,58 @@
     <jsp:body>
     	<!-- //Afficher le formulaire de recherche que si on souhaite faire une recherche -->
     	<c:if test="${champ != ''}">
-	        <form method="post" action="Controleur">
-	        	<input type="hidden" value="rechercheStage" name="action" />
-	        	
-	        	<input type="text" value="${champ}" name="champ" required />&nbsp;&nbsp;&nbsp;
-	        	<input type="submit" value="Rechercher" />
-	        </form>
-	         <br />
+   		<div class="row">
+   			<div class="col-md-12">
+   				<form method="post" action="Controleur">
+		        	<input type="hidden" value="rechercheStage" name="action" />
+		        	
+		        	<div class="form-inline">
+			        	<label>Recherche par libelle : </label>
+			        	<input class="form-control" type="text" value="${champ}" name="champ" required />&nbsp;&nbsp;&nbsp;
+			        	<input type="submit" value="Rechercher" class="btn btn-primary" />
+		        	</div>
+		        </form>
+		         <br />
+   			</div>
+   		</div>
         </c:if>
        
        	<!-- //Afficher le tableau que si la liste contient des éléments -->
         <c:if test="${fn:length(liste) > 0}">
-	        <table class="table">
-		  		<tr>
-				 	<TH> Numero </TH>
-					<TH> Libellé  </TH>
-				 	<TH> Date début  </TH>
-				 	<TH> Date fin </TH>
-				 	<TH>Nombre de places </TH>
-			  		<TH>Nombre d'inscrits </TH>
-		 		</tr>
-			 	
-			 	<c:forEach  items="${liste}"  var="item" >
-			 	<tr class="text-center">
-			     	<td class="id"><a href="Controleur?action=saisieStage&id=${item.id}">${item.id}</a></td>
-			     	<td class="text-left libelle">${item.libelle}</td>
-			      	<td>
-			      		<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${item.datedebut}" pattern="dd/MM/yyyy"/>
-			      	</td>
-			       	<td>
-			       		<fmt:formatDate type="both" dateStyle="short"  timeStyle="short" value="${item.datefin}" pattern="dd/MM/yyyy" />
-			      	</td>
-			       
-			      	<td>${item.nbplaces}</td>
-				  	<td>${item.nbinscrits}</td>
-				  	<td>
-				  		<a class="btn btn-default" href="Controleur?action=saisieStage&id=${item.id}">Modifier</a>&nbsp;&nbsp;&nbsp;
-				  		<a class="btn btn-danger btnSuppr" href="Controleur?action=supprimerStage&id=${item.id}">Supprimer</a>
-				  	</td>
-			  	</tr>
-			 	</c:forEach>
-			</table>
+        <div class="row">
+        	<div class="col-md-12">
+		        <table class="table">
+			  		<tr>
+					 	<TH> Numero </TH>
+						<TH> Libellé  </TH>
+					 	<TH> Date début  </TH>
+					 	<TH> Date fin </TH>
+					 	<TH>Nombre de places </TH>
+				  		<TH>Nombre d'inscrits </TH>
+			 		</tr>
+				 	
+				 	<c:forEach  items="${liste}"  var="item" >
+				 	<tr class="text-center">
+				     	<td class="id"><a href="Controleur?action=saisieStage&id=${item.id}">${item.id}</a></td>
+				     	<td class="text-left libelle">${item.libelle}</td>
+				      	<td>
+				      		<fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${item.datedebut}" pattern="dd/MM/yyyy"/>
+				      	</td>
+				       	<td>
+				       		<fmt:formatDate type="both" dateStyle="short"  timeStyle="short" value="${item.datefin}" pattern="dd/MM/yyyy" />
+				      	</td>
+				       
+				      	<td>${item.nbplaces}</td>
+					  	<td>${item.nbinscrits}</td>
+					  	<td>
+					  		<a class="btn btn-default" href="Controleur?action=saisieStage&id=${item.id}">Modifier</a>&nbsp;&nbsp;&nbsp;
+					  		<a class="btn btn-danger btnSuppr" href="Controleur?action=supprimerStage&id=${item.id}">Supprimer</a>
+					  	</td>
+				  	</tr>
+				 	</c:forEach>
+				</table>
+			</div>
+		</div>
 		</c:if>
 		
 		<!-- //Taille liste == 0 ou recherche effectué ou affichage liste complète -->
