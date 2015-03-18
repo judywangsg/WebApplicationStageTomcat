@@ -24,9 +24,9 @@ public class Controleur extends HttpServlet
 	private static final long serialVersionUID = 1L;
 	private static final String ACTION_TYPE = "action";
 	private static final String SAISIE_STAGE = "saisieStage";
-	//private static final String AFFICHER_STAGE = "afficheStage";
 	private static final String RECHERCHER_STAGE = "rechercheStage";
 	private static final String SUPPRIMER_STAGE = "supprimerStage";
+	private static final String SWAP_STYLE = "swapStyle";
 	private static final String ERROR_PAGE = "/index.jsp";
 
 	// le format est une combinaison de MM dd yyyy avec / ou –
@@ -56,7 +56,12 @@ public class Controleur extends HttpServlet
 		 */
 		
 		//Executer les actions
-		if (SAISIE_STAGE.equals(actionName))
+		if (SWAP_STYLE.equals(actionName))
+		{ //changer de style
+			request.getSession().setAttribute("style", request.getParameter("style"));
+			
+			destinationPage = "/index.jsp";
+		} else if (SAISIE_STAGE.equals(actionName))
 		{
 			String typeAction = request.getParameter("typeAction");
 			
@@ -139,19 +144,6 @@ public class Controleur extends HttpServlet
 			
 			destinationPage = "/index.jsp";
 		}
-		/*else if (AFFICHER_STAGE.equals(actionName))
-		{
-			try {			
-				List<Stage> listeStages = Stage.rechercheLesStages("");
-				request.setAttribute("liste", listeStages);
-			} catch (Exception e)
-			{
-				request.setAttribute("messError", e.getMessage());
-				System.out.println(e.getMessage());
-			}
-			
-			destinationPage = "/rechercherStage.jsp";
-		}*/ 
 		else if (RECHERCHER_STAGE.equals(actionName))
 		{
 			try {
@@ -179,7 +171,7 @@ public class Controleur extends HttpServlet
 			
 			//Affichage de la vue rechercherStage par défaut
 			destinationPage = "/rechercherStage.jsp";
-		} 	
+		} 
 		
 		// Redirection vers la page jsp appropriee 
 	    RequestDispatcher dispatcher =getServletContext().getRequestDispatcher(destinationPage);

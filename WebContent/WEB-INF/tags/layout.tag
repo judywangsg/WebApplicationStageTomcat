@@ -8,6 +8,14 @@
 <%@attribute name="title" fragment="true" %>
 <%@attribute name="content" fragment="true" %>
 
+<%
+	//Style par défaut = noir
+	if (request.getSession().getAttribute("style") == null)
+		request.getSession().setAttribute("style", "noir");
+
+	//Define styleName attr
+	request.setAttribute("styleName", (String)request.getSession().getAttribute("style"));
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -18,10 +26,10 @@
 		
 		<link rel="icon" type="image/png" href="images/icone.png" />
 		
-		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme_bleu.min.css">
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/theme_${styleName}.min.css">
 		<link rel="stylesheet" type="text/css" href="lib/bootstrapDialog/css/bootstrap-dialog.min.css">
-		<link rel="stylesheet" href="lib/zebra_Datepicker/css/bootstrap.css" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="css/layout_bleu.css">
+		<link rel="stylesheet" href="lib/zebra_Datepicker/css/${styleName}.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/layout_${styleName}.css">
 		
 		<style type="text/css">
 			.modal-backdrop {
@@ -66,6 +74,11 @@
 				        <li><a href="Controleur?action=rechercheStage&complet">Liste complète</a></li>
 				        <li><a href="Controleur?action=saisieStage">Ajouter</a></li>
 				        <li><a href="Controleur?action=rechercheStage">Rechercher</a></li>
+			      	</ul>
+			      	<ul class="nav navbar-nav navbar-right">
+			      		<li class="navbar-text"><b>Choix style : </b></li>
+				        <li><a href="Controleur?action=swapStyle&style=bleu">Bleu</a></li>
+				        <li><a href="Controleur?action=swapStyle&style=noir">Noir</a></li>
 			      	</ul>
 		  		</div><!-- /.navbar-collapse -->
 	  		</div><!-- /.container-fluid -->
